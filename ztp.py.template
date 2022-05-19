@@ -1,0 +1,26 @@
+import cli
+
+print("ztp started")
+
+# Configure Device Username & Password
+cli.clip("config t ; username admin privilege 15 password C1sc0123")
+
+print("username already added")
+# Configure Device Hostname
+cli.clip("config t ; hostname DONEWIN_RT-{}".format(HOSTNAME_NUM))
+
+print("hostname modify")
+# Configure SSH KEY
+cli.clip("config t ; ip domain name donewin.com ; crypto key generate rsa modulus 1024")
+
+print("ssh key genrated")
+# Configure Line VTY SSH Login
+cli.clip("config t ; line  vty  0 4 ; transport input ssh ; login local ")
+
+print("ssh vty ok")
+
+# Configure interface g 2 ip address dhcp
+cli.clip("config t ; interface gi 2 ; ip address dhcp ; no shutdown ")
+print("interface address ok")
+
+print("ztp finish")
